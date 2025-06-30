@@ -24,13 +24,25 @@ import {
 
 interface GlobalNavigationProps {
   activeMainTab: string;
-  setActiveMainTab: (tab: 'dashboard' | 'social-experience' | 'network' | 'messaging' | 'equity-trading' | 'expert-marketplace' | 'intelligence' | 'my-ventures') => void;
+  setActiveMainTab: (
+    tab:
+      | 'dashboard'
+      | 'social-experience'
+      | 'network'
+      | 'messaging'
+      | 'equity-trading'
+      | 'expert-marketplace'
+      | 'intelligence'
+      | 'my-ventures'
+      | 'profile'
+  ) => void;
   setInitialTradingTab?: (tab: string | null) => void;
 }
 
 function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTab }: GlobalNavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -56,6 +68,16 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
   const handleMyServicesClick = () => {
     setActiveMainTab('my-services');
     setIsProfileDropdownOpen(false);
+  };
+
+  // Navigate to profile page
+  const handleProfileClick = () => {
+    setActiveMainTab('profile');
+    setIsProfileDropdownOpen(false);
+  };
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
   };
 
   return (
@@ -136,20 +158,43 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 <Users className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-2 w-2"></span>
               </button>
-              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                 My Network
               </div>
             </div>
 
             {/* Notifications */}
             <div className="group relative">
-              <button className="relative text-white/80 hover:text-white transition-colors p-2">
+              <button
+                onClick={toggleNotifications}
+                className="relative text-white/80 hover:text-white transition-colors p-2"
+              >
                 <Bell className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
               </button>
-              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                 Notifications
               </div>
+
+              {/* Notifications dropdown */}
+              {showNotifications && (
+                <div className="absolute right-0 mt-2 w-72 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    <div className="px-4 py-2 text-white/80 hover:bg-white/10 transition-colors">
+                      <p className="text-sm">New connection request from <span className="text-purple-300">Ahmed Ali</span></p>
+                      <p className="text-xs text-white/50">2 mins ago</p>
+                    </div>
+                    <div className="px-4 py-2 text-white/80 hover:bg-white/10 transition-colors">
+                      <p className="text-sm">Deal <span className="text-purple-300">PayMENA Series A</span> closes in 7 days</p>
+                      <p className="text-xs text-white/50">1 hr ago</p>
+                    </div>
+                    <div className="px-4 py-2 text-white/80 hover:bg-white/10 transition-colors">
+                      <p className="text-sm">You have 3 unread messages</p>
+                      <p className="text-xs text-white/50">Yesterday</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Messaging */}
@@ -163,7 +208,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 <MessageCircle className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
               </button>
-              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                 Messaging
               </div>
             </div>
@@ -185,10 +230,13 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
               {isProfileDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-lg shadow-lg">
                   <div className="py-2">
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <button
+                      onClick={handleProfileClick}
+                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors w-full text-left"
+                    >
                       <Eye className="h-4 w-4" />
                       <span>View/Edit Profile</span>
-                    </a>
+                    </button>
                     <button 
                       onClick={handleMyVenturesClick}
                       className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors w-full text-left"

@@ -88,7 +88,7 @@ function NewVenturePage({
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [currentStep]);
 
   // Update AI agent when step changes
   useEffect(() => {

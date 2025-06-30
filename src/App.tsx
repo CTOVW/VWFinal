@@ -25,6 +25,7 @@ import ExpertsMarketplacePage from './marketplace/ExpertsMarketplacePage';
 import IntelligencePage from './intelligence/IntelligencePage';
 import MyVenturesPage from './ventures/MyVenturesPage';
 import MyServicesPage from './my-services/MyServicesPage';
+import ProfilePage from './profile/ProfilePage';
 import GlobalNavigation from './components/GlobalNavigation';
 
 interface Message {
@@ -79,10 +80,21 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOnboarding, setIsOnboarding] = useState(false);
   const [selectedRole, setSelectedRole] = useState<'founder' | 'investor' | 'expert' | null>(null);
-  const [activeMainTab, setActiveMainTab] = useState<'dashboard' | 'social-experience' | 'network' | 'messaging' | 'equity-trading' | 'expert-marketplace' | 'intelligence' | 'my-ventures' | 'my-services'>('equity-trading');
-  
-  // Use a ref to track the initial trading tab
-  const initialTradingTabRef = useRef<string | null>(null);
+  const [activeMainTab, setActiveMainTab] = useState<
+    | 'dashboard'
+    | 'social-experience'
+    | 'network'
+    | 'messaging'
+    | 'equity-trading'
+    | 'expert-marketplace'
+    | 'intelligence'
+    | 'my-ventures'
+    | 'my-services'
+    | 'profile'
+  >('equity-trading');
+
+  // state based flag so “My Investments” navigation triggers re-render in TradingPage
+  const [initialTradingTab, setInitialTradingTab] = useState<string | null>(null);
   
   // Profile Data State (centralized)
   const [profileData, setProfileData] = useState<ProfileData>({
@@ -481,8 +493,8 @@ You can review and modify these suggestions as needed. Would you like me to help
             setActiveMainTab={setActiveMainTab}
             selectedAICompanion={selectedAICompanion}
             onAgentChange={handleAgentChange}
-            initialTradingTab={initialTradingTabRef.current}
-            setInitialTradingTab={(tab) => { initialTradingTabRef.current = tab; }}
+            initialTradingTab={initialTradingTab}
+            setInitialTradingTab={setInitialTradingTab}
           />
         )}
         
@@ -530,6 +542,20 @@ You can review and modify these suggestions as needed. Would you like me to help
         
         {activeMainTab === 'expert-marketplace' && (
           <ExpertsMarketplacePage
+            isAICompanionOpen={isAICompanionOpen}
+            aiCompanionWidth={aiCompanionWidth}
+            toggleAICompanion={toggleAICompanion}
+            selectedRole={selectedRole!}
+            profileData={profileData}
+            activeMainTab={activeMainTab}
+            setActiveMainTab={setActiveMainTab}
+            selectedAICompanion={selectedAICompanion}
+            onAgentChange={handleAgentChange}
+          />
+        )}
+
+        {activeMainTab === 'profile' && (
+          <ProfilePage
             isAICompanionOpen={isAICompanionOpen}
             aiCompanionWidth={aiCompanionWidth}
             toggleAICompanion={toggleAICompanion}
