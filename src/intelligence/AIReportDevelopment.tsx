@@ -6,6 +6,7 @@ import {
   Plus,
   History,
   Search,
+  Filter,
   Trash2,
   Edit
 } from 'lucide-react';
@@ -137,7 +138,7 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -146,8 +147,8 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
         </div>
 
         {/* AI Reports Tabs */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden mb-8">
-          <div className="border-b border-white/20">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl overflow-hidden mb-8">
+          <div className="border-b border-accent/20">
             <div className="flex">
               {aiReportsTabs.map((tab) => {
                 const IconComponent = tab.icon;
@@ -157,8 +158,8 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                     onClick={() => setActiveAIReportTab(tab.id)}
                     className={`flex-1 flex items-center justify-center space-x-2 px-6 py-4 font-medium transition-colors ${
                       activeAIReportTab === tab.id
-                        ? 'bg-white/10 text-white border-b-2 border-purple-300'
-                        : 'text-white/70 hover:text-white hover:bg-white/5'
+                        ? 'bg-secondary-light text-white border-b-2 border-highlight'
+                        : 'text-white/70 hover:text-white hover:bg-secondary-light'
                     }`}
                   >
                     <IconComponent className="h-4 w-4" />
@@ -181,13 +182,13 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                       name="industry"
                       value={reportParameters.industry}
                       onChange={handleParameterChange}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
                     >
-                      <option value="" className="bg-slate-800">Select Industry</option>
-                      <option value="Fintech" className="bg-slate-800">Fintech</option>
-                      <option value="Healthtech" className="bg-slate-800">Healthtech</option>
-                      <option value="E-commerce" className="bg-slate-800">E-commerce</option>
-                      <option value="Edtech" className="bg-slate-800">Edtech</option>
+                      <option value="" className="bg-primary-dark">Select Industry</option>
+                      <option value="Fintech" className="bg-primary-dark">Fintech</option>
+                      <option value="Healthtech" className="bg-primary-dark">Healthtech</option>
+                      <option value="E-commerce" className="bg-primary-dark">E-commerce</option>
+                      <option value="Edtech" className="bg-primary-dark">Edtech</option>
                     </select>
                   </div>
                   <div>
@@ -196,13 +197,13 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                       name="market"
                       value={reportParameters.market}
                       onChange={handleParameterChange}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
                     >
-                      <option value="" className="bg-slate-800">Select Market</option>
-                      <option value="UAE" className="bg-slate-800">UAE</option>
-                      <option value="MENA" className="bg-slate-800">MENA Region</option>
-                      <option value="Saudi Arabia" className="bg-slate-800">Saudi Arabia</option>
-                      <option value="Egypt" className="bg-slate-800">Egypt</option>
+                      <option value="" className="bg-primary-dark">Select Market</option>
+                      <option value="UAE" className="bg-primary-dark">UAE</option>
+                      <option value="MENA" className="bg-primary-dark">MENA Region</option>
+                      <option value="Saudi Arabia" className="bg-primary-dark">Saudi Arabia</option>
+                      <option value="Egypt" className="bg-primary-dark">Egypt</option>
                     </select>
                   </div>
                   <div>
@@ -213,7 +214,7 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                       value={reportParameters.topic}
                       onChange={handleParameterChange}
                       placeholder="e.g., Market Trends, Competitive Analysis"
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-highlight"
                     />
                   </div>
                   <div>
@@ -224,7 +225,7 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                       value={reportParameters.purpose}
                       onChange={handleParameterChange}
                       placeholder="e.g., Investment Opportunity Identification"
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-highlight"
                     />
                   </div>
                   <div className="md:col-span-2">
@@ -235,19 +236,19 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                       onChange={handleParameterChange}
                       rows={3}
                       placeholder="e.g., Market size, growth drivers, regulatory environment, key players, emerging technologies"
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                      className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-highlight resize-none"
                     />
                   </div>
                 </div>
                 <button
                   onClick={handleGenerateReport}
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
+                  className="bg-gradient-to-r from-accent to-highlight text-white px-6 py-3 rounded-lg font-semibold hover:from-accent-dark hover:to-highlight-dark transition-all duration-300"
                 >
                   Generate Report
                 </button>
 
                 {generatedReportContent && (
-                  <div className="mt-8 bg-white/5 rounded-lg p-6 border border-white/20">
+                  <div className="mt-8 bg-primary-dark rounded-lg p-6 border border-accent/20">
                     <h3 className="text-xl font-bold text-white mb-4">Generated Report</h3>
                     <div className="prose prose-invert max-w-none text-white/80">
                       {/* Render markdown content - for a real app, use a markdown renderer */}
@@ -257,7 +258,7 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                     </div>
                     <button
                       onClick={handleExportReport}
-                      className="mt-6 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2"
+                      className="mt-6 bg-highlight hover:bg-highlight-dark text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2"
                     >
                       <Download className="h-5 w-5" />
                       <span>Export Report</span>
@@ -280,20 +281,20 @@ The ${reportParameters.industry} market in ${reportParameters.market} is dynamic
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sampleAIReports.map((report) => (
-                      <div key={report.id} className="bg-white/5 rounded-lg p-6 border border-white/20">
+                      <div key={report.id} className="bg-primary-dark rounded-lg p-6 border border-accent/20">
                         <h3 className="text-white font-semibold text-lg mb-2">{report.title}</h3>
                         <p className="text-white/70 text-sm mb-4">Generated on {report.date.toLocaleDateString()}</p>
                         <div className="flex items-center space-x-3">
-                          <button
+                          <button 
                             onClick={() => handleViewReport(report.id)}
-                            className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                            className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
                           >
                             <FileText className="h-4 w-4" />
                             <span>View Report</span>
                           </button>
-                          <button
+                          <button 
                             onClick={() => handleDeleteReport(report.id)}
-                            className="bg-red-500/20 text-red-300 hover:bg-red-500/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                            className="bg-highlight/20 text-highlight hover:bg-highlight/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
                           >
                             <Trash2 className="h-4 w-4" />
                             <span>Delete</span>

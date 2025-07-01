@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import {
-  DollarSign, MapPin, TrendingUp, Building2, Target,
-  Filter, Globe, Activity, PieChart, LineChart, Info,
-  BarChart3, Zap, Users, Scale, Landmark, ShieldCheck,
-  CheckCircle, Lightbulb, AlertTriangle, Newspaper, Brain
+import { 
+  DollarSign, 
+  MapPin, 
+  TrendingUp, 
+  Building2, 
+  Target,
+  Filter,
+  Brain,
+  ExternalLink,
+  PieChart,
+  LineChart
 } from 'lucide-react';
+import GlobalNavigation from '../components/GlobalNavigation';
 import {
   sampleMarketStats,
   sampleMacroIntelligence,
@@ -97,12 +104,12 @@ function MarketIntelligenceDashboard({
 
     if (diffInHours < 1) return 'Just now';
     if (diffInHours < 24) return `${diffInHours}h ago`;
-    const diffInDays = Math.floor(diffInHours / 24);
+    const diffInDays = Math.ceil(diffInHours / 24);
     return `${diffInDays}d ago`;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -111,7 +118,7 @@ function MarketIntelligenceDashboard({
         </div>
 
         {/* Filter Panel */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 mb-8">
           <h3 className="text-white font-semibold mb-4">Customize Your View</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <div>
@@ -119,13 +126,13 @@ function MarketIntelligenceDashboard({
               <select
                 value={geographicGranularity}
                 onChange={(e) => setGeographicGranularity(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
-                <option value="Global" className="bg-slate-800">Global</option>
-                <option value="MENA" className="bg-slate-800">MENA Region</option>
-                <option value="UAE" className="bg-slate-800">UAE</option>
-                <option value="SA" className="bg-slate-800">Saudi Arabia</option>
-                <option value="EG" className="bg-slate-800">Egypt</option>
+                <option value="Global" className="bg-primary-dark">Global</option>
+                <option value="MENA" className="bg-primary-dark">MENA Region</option>
+                <option value="UAE" className="bg-primary-dark">UAE</option>
+                <option value="SA" className="bg-primary-dark">Saudi Arabia</option>
+                <option value="EG" className="bg-primary-dark">Egypt</option>
               </select>
             </div>
             <div>
@@ -133,12 +140,12 @@ function MarketIntelligenceDashboard({
               <select
                 value={industryDepth}
                 onChange={(e) => setIndustryDepth(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
-                <option value="Broad Sector" className="bg-slate-800">Broad Sector</option>
-                <option value="Fintech" className="bg-slate-800">Fintech</option>
-                <option value="Healthtech" className="bg-slate-800">Healthtech</option>
-                <option value="E-commerce" className="bg-slate-800">E-commerce</option>
+                <option value="Broad Sector" className="bg-primary-dark">Broad Sector</option>
+                <option value="Fintech" className="bg-primary-dark">Fintech</option>
+                <option value="Healthtech" className="bg-primary-dark">Healthtech</option>
+                <option value="E-commerce" className="bg-primary-dark">E-commerce</option>
               </select>
             </div>
             <div>
@@ -146,11 +153,11 @@ function MarketIntelligenceDashboard({
               <select
                 value={topicFocus}
                 onChange={(e) => setTopicFocus(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
-                <option value="Regulatory" className="bg-slate-800">Regulatory</option>
-                <option value="Technology" className="bg-slate-800">Technology</option>
-                <option value="Market Dynamics" className="bg-slate-800">Market Dynamics</option>
+                <option value="Regulatory" className="bg-primary-dark">Regulatory</option>
+                <option value="Technology" className="bg-primary-dark">Technology</option>
+                <option value="Market Dynamics" className="bg-primary-dark">Market Dynamics</option>
               </select>
             </div>
             <div>
@@ -158,11 +165,11 @@ function MarketIntelligenceDashboard({
               <select
                 value={dataSource}
                 onChange={(e) => setDataSource(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
-                <option value="Platform Data" className="bg-slate-800">Platform Data</option>
-                <option value="Government" className="bg-slate-800">Government</option>
-                <option value="Private Research" className="bg-slate-800">Private Research</option>
+                <option value="Platform Data" className="bg-primary-dark">Platform Data</option>
+                <option value="Government" className="bg-primary-dark">Government</option>
+                <option value="Private Research" className="bg-primary-dark">Private Research</option>
               </select>
             </div>
             <div>
@@ -170,11 +177,11 @@ function MarketIntelligenceDashboard({
               <select
                 value={updateFrequency}
                 onChange={(e) => setUpdateFrequency(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
-                <option value="Daily" className="bg-slate-800">Daily</option>
-                <option value="Weekly" className="bg-slate-800">Weekly</option>
-                <option value="Monthly" className="bg-slate-800">Monthly</option>
+                <option value="Daily" className="bg-primary-dark">Daily</option>
+                <option value="Weekly" className="bg-primary-dark">Weekly</option>
+                <option value="Monthly" className="bg-primary-dark">Monthly</option>
               </select>
             </div>
           </div>
@@ -185,9 +192,9 @@ function MarketIntelligenceDashboard({
           {sampleMarketStats.map((stat, index) => {
             const IconComponent = getIconComponent(stat.icon);
             return (
-              <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center">
-                <div className={`bg-${stat.color}-500/20 p-3 rounded-lg w-fit mx-auto mb-4`}>
-                  <IconComponent className={`h-6 w-6 text-${stat.color}-300`} />
+              <div key={index} className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 text-center">
+                <div className={`bg-${stat.color === 'blue' ? 'accent' : 'highlight'}/20 p-3 rounded-lg w-fit mx-auto mb-4`}>
+                  <IconComponent className={`h-6 w-6 text-${stat.color === 'blue' ? 'accent' : 'highlight'}`} />
                 </div>
                 <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
                 <div className="text-white/70 text-sm">{stat.label}</div>
@@ -197,57 +204,57 @@ function MarketIntelligenceDashboard({
         </div>
 
         {/* Macro Intelligence */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">Macro Intelligence</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <Scale className="h-5 w-5 text-blue-300" />
+                <Scale className="h-5 w-5 text-accent" />
                 <span>Economic Environment</span>
               </h3>
               <p className="text-white/80 text-sm">Stability Index: <span className="font-medium">{sampleMacroIntelligence.economicStability.index}</span></p>
               <p className="text-white/80 text-sm">GDP Growth: <span className="font-medium">{sampleMacroIntelligence.economicStability.gdpGrowth}</span></p>
               <p className="text-white/80 text-sm">Inflation: <span className="font-medium">{sampleMacroIntelligence.economicStability.inflation}</span></p>
             </div>
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <Landmark className="h-5 w-5 text-purple-300" />
+                <Landmark className="h-5 w-5 text-highlight" />
                 <span>Political Risk Barometer</span>
               </h3>
               <p className="text-white/80 text-sm">Risk Level: <span className="font-medium">{sampleMacroIntelligence.politicalRisk.barometer}</span></p>
               <p className="text-white/80 text-sm">Government Stability: <span className="font-medium">{sampleMacroIntelligence.politicalRisk.governmentStability}</span></p>
               <p className="text-white/80 text-sm">Policy Continuity: <span className="font-medium">{sampleMacroIntelligence.politicalRisk.policyContinuity}</span></p>
             </div>
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <ShieldCheck className="h-5 w-5 text-green-300" />
+                <ShieldCheck className="h-5 w-5 text-accent" />
                 <span>Regulatory Landscape Tracker</span>
               </h3>
               <p className="text-white/80 text-sm">Status: <span className="font-medium">{sampleMacroIntelligence.regulatoryLandscape.tracker}</span></p>
               <p className="text-white/80 text-sm">Recent Changes: <span className="font-medium">{sampleMacroIntelligence.regulatoryLandscape.recentChanges}</span></p>
               <p className="text-white/80 text-sm">Upcoming Shifts: <span className="font-medium">{sampleMacroIntelligence.regulatoryLandscape.upcomingShifts}</span></p>
             </div>
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <Globe className="h-5 w-5 text-yellow-300" />
+                <Globe className="h-5 w-5 text-highlight" />
                 <span>Market Accessibility Score</span>
               </h3>
               <p className="text-white/80 text-sm">Score: <span className="font-medium">{sampleMacroIntelligence.marketAccessibility.score}</span></p>
               <p className="text-white/80 text-sm">Ease of Entry: <span className="font-medium">{sampleMacroIntelligence.marketAccessibility.easeOfEntry}</span></p>
               <p className="text-white/80 text-sm">Operational Complexity: <span className="font-medium">{sampleMacroIntelligence.marketAccessibility.operationalComplexity}</span></p>
             </div>
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <Zap className="h-5 w-5 text-red-300" />
+                <Zap className="h-5 w-5 text-accent" />
                 <span>Infrastructure Readiness Gauge</span>
               </h3>
               <p className="text-white/80 text-sm">Gauge: <span className="font-medium">{sampleMacroIntelligence.infrastructureReadiness.gauge}</span></p>
               <p className="text-white/80 text-sm">Digital: <span className="font-medium">{sampleMacroIntelligence.infrastructureReadiness.digital}</span></p>
               <p className="text-white/80 text-sm">Financial: <span className="font-medium">{sampleMacroIntelligence.infrastructureReadiness.financial}</span></p>
             </div>
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <TrendingUp className="h-5 w-5 text-indigo-300" />
+                <TrendingUp className="h-5 w-5 text-highlight" />
                 <span>Macro Trend Indicators</span>
               </h3>
               <p className="text-white/80 text-sm">Demographic Shifts: <span className="font-medium">{sampleMacroIntelligence.macroTrendIndicators.demographicShifts}</span></p>
@@ -258,13 +265,13 @@ function MarketIntelligenceDashboard({
         </div>
 
         {/* Micro Intelligence */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">Micro Intelligence</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Market Fundamentals */}
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <BarChart3 className="h-5 w-5 text-blue-300" />
+                <BarChart3 className="h-5 w-5 text-accent" />
                 <span>Market Fundamentals</span>
               </h3>
               <div className="space-y-4">
@@ -287,17 +294,17 @@ function MarketIntelligenceDashboard({
             </div>
 
             {/* Growth & Forecast */}
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <LineChart className="h-5 w-5 text-green-300" />
+                <LineChart className="h-5 w-5 text-highlight" />
                 <span>Growth & Forecast</span>
               </h3>
               <div className="space-y-4">
                 <div>
                   <h4 className="text-white font-medium mb-1">Growth Trend Chart</h4>
-                  <div className="flex items-end h-24 border-b border-l border-white/20 pb-1 pl-1">
+                  <div className="flex items-end h-24 border-b border-l border-accent/20 pb-1 pl-1">
                     {sampleMicroIntelligence.growthForecast.growthTrend.map((data: any, index: number) => (
-                      <div key={index} className="flex-1 bg-purple-500 mx-0.5" style={{ height: `${data.value / 2.5}px` }}></div>
+                      <div key={index} className="flex-1 bg-accent mx-0.5" style={{ height: `${data.value / 2.5}px` }}></div>
                     ))}
                   </div>
                   <div className="flex justify-between text-white/70 text-xs mt-1">
@@ -321,12 +328,12 @@ function MarketIntelligenceDashboard({
         </div>
 
         {/* Strategic Intelligence */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-white mb-6">Strategic Intelligence</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <Lightbulb className="h-5 w-5 text-yellow-300" />
+                <Lightbulb className="h-5 w-5 text-highlight" />
                 <span>Opportunity Matrix</span>
               </h3>
               <ul className="text-white/80 text-sm list-disc pl-5 space-y-1">
@@ -335,9 +342,9 @@ function MarketIntelligenceDashboard({
                 ))}
               </ul>
             </div>
-            <div className="bg-white/5 rounded-lg p-4">
+            <div className="bg-primary-dark rounded-lg p-4">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <AlertTriangle className="h-5 w-5 text-red-300" />
+                <AlertTriangle className="h-5 w-5 text-highlight" />
                 <span>Challenge Assessment Grid</span>
               </h3>
               <ul className="text-white/80 text-sm list-disc pl-5 space-y-1">
@@ -346,20 +353,20 @@ function MarketIntelligenceDashboard({
                 ))}
               </ul>
             </div>
-            <div className="bg-white/5 rounded-lg p-4 col-span-full">
+            <div className="bg-primary-dark rounded-lg p-4 col-span-full">
               <h3 className="text-white font-semibold mb-3 flex items-center space-x-2">
-                <Target className="h-5 w-5 text-purple-300" />
+                <Target className="h-5 w-5 text-accent" />
                 <span>Market Timing Indicator</span>
               </h3>
-              <p className="text-white/80 text-sm">{sampleMicroIntelligence.strategicIntelligence.marketTiming}</p>
+              <p className="text-white/80">{sampleMicroIntelligence.strategicIntelligence.marketTiming}</p>
             </div>
           </div>
         </div>
 
         {/* AI Market Summary */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-white mb-4 flex items-center space-x-2">
-            <Brain className="h-6 w-6 text-blue-300" />
+            <Brain className="h-6 w-6 text-accent" />
             <span>AI Market Summary</span>
           </h2>
           <p className="text-white/80 leading-relaxed mb-4">{sampleAIMarketSummary.executiveOverview}</p>
@@ -369,9 +376,9 @@ function MarketIntelligenceDashboard({
             ))}
           </ul>
           <div className="flex items-center justify-between text-sm text-white/70">
-            <span>Sentiment: <span className="font-semibold text-green-400">{sampleAIMarketSummary.marketSentiment}</span> (<span className="font-semibold">{sampleAIMarketSummary.confidenceScore}</span> confidence)</span>
+            <span>Sentiment: <span className="font-semibold text-accent">{sampleAIMarketSummary.marketSentiment}</span> (<span className="font-semibold">{sampleAIMarketSummary.confidenceScore}</span> confidence)</span>
             <span>Data Freshness: {formatTimeAgo(sampleAIMarketSummary.dataFreshness)}</span>
-            <button className="text-purple-300 hover:text-purple-200 transition-colors">
+            <button className="text-accent hover:text-highlight transition-colors">
               Expand for details
             </button>
           </div>
@@ -379,17 +386,17 @@ function MarketIntelligenceDashboard({
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Market Alerts */}
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
-            <h2 className="text-2xl font-bold text-white mb-4 flex items-center space-x-2">
-              <AlertTriangle className="h-6 w-6 text-red-300" />
+          <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
+              <AlertTriangle className="h-6 w-6 text-highlight" />
               <span>Market Alerts</span>
             </h2>
             <div className="space-y-4">
               {sampleMarketAlerts.map((alert) => (
                 <div key={alert.id} className={`p-4 rounded-lg border ${
-                  alert.type === 'critical' ? 'bg-red-500/20 border-red-500/30' :
-                  alert.type === 'warning' ? 'bg-yellow-500/20 border-yellow-500/30' :
-                  'bg-blue-500/20 border-blue-500/30'
+                  alert.type === 'critical' ? 'bg-highlight/20 border-highlight/30' :
+                  alert.type === 'warning' ? 'bg-accent/20 border-accent/30' :
+                  'bg-accent/20 border-accent/30'
                 }`}>
                   <h3 className="text-white font-semibold mb-1">{alert.title}</h3>
                   <p className="text-white/80 text-sm mb-2">{alert.description}</p>
@@ -400,19 +407,22 @@ function MarketIntelligenceDashboard({
           </div>
 
           {/* Market News & Updates */}
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
-            <h2 className="text-2xl font-bold text-white mb-4 flex items-center space-x-2">
-              <Newspaper className="h-6 w-6 text-green-300" />
+          <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-white mb-4 flex items-center space-x-2">
+              <Newspaper className="h-6 w-6 text-accent" />
               <span>Market News & Updates</span>
             </h2>
             <div className="space-y-4">
               {sampleMarketNews.map((news) => (
-                <a href={news.url} target="_blank" rel="noopener noreferrer" key={news.id} className="block p-4 rounded-lg border border-white/20 hover:bg-white/5 transition-colors">
+                <a href={news.url} target="_blank" rel="noopener noreferrer" key={news.id} className="block p-4 rounded-lg border border-accent/20 hover:bg-primary-light transition-colors">
                   <h3 className="text-white font-semibold mb-1">{news.title}</h3>
                   <p className="text-white/80 text-sm mb-2">{news.description}</p>
                   <div className="flex items-center justify-between text-sm text-white/60">
                     <span>{news.source}</span>
-                    <span>{formatTimeAgo(news.date)}</span>
+                    <div className="flex items-center space-x-1">
+                      <span>{formatTimeAgo(news.date)}</span>
+                      <ExternalLink className="h-3 w-3" />
+                    </div>
                   </div>
                 </a>
               ))}

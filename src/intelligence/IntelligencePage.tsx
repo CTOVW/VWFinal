@@ -147,15 +147,15 @@ function IntelligencePage({
       <div className="flex flex-1 pt-16">
         {/* Left Sidebar */}
         <div
-          className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 border-r border-white/20 transition-all duration-300 z-30 ${
+          className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-primary border-r border-accent/20 transition-all duration-300 z-30 ${
             isAICompanionOpen ? 'w-16' : 'w-64'
           }`}
         >
           {/* Profile Section */}
-          <div className="p-4 border-b border-white/20">
+          <div className="p-4 border-b border-accent/20">
             {!isAICompanionOpen ? (
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-accent to-highlight rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold">
                     {profileData.fullName ? profileData.fullName.charAt(0) : 'U'}
                   </span>
@@ -169,9 +169,9 @@ function IntelligencePage({
                   </p>
                   <div className="flex items-center space-x-1 mt-1">
                     <span className={`px-2 py-0.5 rounded-full text-xs ${
-                      selectedRole === 'founder' ? 'bg-purple-500/20 text-purple-300' :
-                      selectedRole === 'investor' ? 'bg-blue-500/20 text-blue-300' :
-                      'bg-green-500/20 text-green-300'
+                      selectedRole === 'founder' ? 'bg-accent/20 text-accent' :
+                      selectedRole === 'investor' ? 'bg-highlight/20 text-highlight' :
+                      'bg-accent/20 text-accent'
                     }`}>
                       {selectedRole}
                     </span>
@@ -183,7 +183,7 @@ function IntelligencePage({
               </div>
             ) : (
               <div className="flex justify-center">
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-accent to-highlight rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-sm">
                     {profileData.fullName ? profileData.fullName.charAt(0) : 'U'}
                   </span>
@@ -194,7 +194,7 @@ function IntelligencePage({
 
           {/* Quick Stats (Placeholder for Intelligence specific stats) */}
           {!isAICompanionOpen && (
-            <div className="p-4 border-b border-white/20">
+            <div className="p-4 border-b border-accent/20">
               <div className="space-y-3">
                 <div className="text-center">
                   <div className="text-white font-semibold">12</div>
@@ -222,8 +222,8 @@ function IntelligencePage({
                   onClick={() => setActiveIntelligenceTab(tab.id)}
                   className={`w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors mb-1 ${
                     activeIntelligenceTab === tab.id
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/70 hover:text-white hover:bg-white/5'
+                      ? 'bg-secondary text-white'
+                      : 'text-white/70 hover:text-white hover:bg-secondary'
                   }`}
                 >
                   <IconComponent className="h-5 w-5 flex-shrink-0" />
@@ -250,7 +250,7 @@ function IntelligencePage({
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={toggleAICompanion}
-          className="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-4 rounded-full shadow-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-110"
+          className="bg-gradient-to-r from-accent to-highlight text-white p-4 rounded-full shadow-lg hover:from-accent-dark hover:to-highlight-dark transition-all duration-300 transform hover:scale-110"
         >
           <Brain className="h-6 w-6" />
         </button>

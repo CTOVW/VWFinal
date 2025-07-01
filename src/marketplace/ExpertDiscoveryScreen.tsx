@@ -84,7 +84,7 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-primary">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -93,7 +93,7 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
         </div>
 
         {/* Search Bar */}
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+        <div className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 mb-8">
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
             <input
@@ -101,7 +101,7 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search Experts"
-              className="w-full bg-white/10 border border-white/20 rounded-lg pl-10 pr-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full bg-primary border border-accent/20 rounded-lg pl-10 pr-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-highlight"
             />
           </div>
 
@@ -113,8 +113,8 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
                 onClick={() => setActiveFilter(tab.id)}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeFilter === tab.id
-                    ? 'bg-purple-500 text-white'
-                    : 'bg-white/10 text-white/70 hover:text-white hover:bg-white/20'
+                    ? 'bg-accent text-white'
+                    : 'bg-primary text-white/70 hover:text-white hover:bg-primary-light'
                 }`}
               >
                 {tab.label}
@@ -129,10 +129,10 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
               <select
                 value={industryFilter}
                 onChange={(e) => setIndustryFilter(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
                 {industryOptions.map((option) => (
-                  <option key={option.id} value={option.id} className="bg-slate-800">
+                  <option key={option.id} value={option.id} className="bg-primary-dark">
                     {option.label}
                   </option>
                 ))}
@@ -143,10 +143,10 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
               <select
                 value={specialityFilter}
                 onChange={(e) => setSpecialityFilter(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
                 {specialityOptions.map((option) => (
-                  <option key={option.id} value={option.id} className="bg-slate-800">
+                  <option key={option.id} value={option.id} className="bg-primary-dark">
                     {option.label}
                   </option>
                 ))}
@@ -157,10 +157,10 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
               <select
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
                 {locationOptions.map((option) => (
-                  <option key={option.id} value={option.id} className="bg-slate-800">
+                  <option key={option.id} value={option.id} className="bg-primary-dark">
                     {option.label}
                   </option>
                 ))}
@@ -171,10 +171,10 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-highlight"
               >
                 {sortOptions.map((option) => (
-                  <option key={option.id} value={option.id} className="bg-slate-800">
+                  <option key={option.id} value={option.id} className="bg-primary-dark">
                     {option.label}
                   </option>
                 ))}
@@ -186,7 +186,7 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
         {/* Experts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredExperts.map((expert) => (
-            <div key={expert.id} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div key={expert.id} className="bg-secondary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-secondary-light transition-all duration-300">
               <div className="flex items-start space-x-4 mb-4">
                 <div className="relative">
                   <img
@@ -195,13 +195,13 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   {expert.isOnline && (
-                    <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-400 rounded-full border-2 border-slate-900"></div>
+                    <div className="absolute bottom-0 right-0 w-4 h-4 bg-highlight rounded-full border-2 border-secondary"></div>
                   )}
                 </div>
                 <div className="flex-1">
                   <h3 className="text-white font-semibold text-lg">{expert.name}</h3>
                   <div className="flex items-center space-x-2 mb-1">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <Star className="h-4 w-4 text-highlight fill-current" />
                     <span className="text-white/80 text-sm">{formatRating(expert.rating)}</span>
                     <span className="text-white/60 text-sm">({expert.completedSessions} sessions)</span>
                   </div>
@@ -214,7 +214,7 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
                   {expert.specialities.slice(0, 3).map((speciality, index) => (
                     <span 
                       key={index}
-                      className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs"
+                      className="bg-accent/20 text-accent px-2 py-1 rounded text-xs"
                     >
                       {speciality}
                     </span>
@@ -236,7 +236,7 @@ function ExpertDiscoveryScreen({ selectedRole, profileData, toggleAICompanion, o
 
               <button 
                 onClick={() => onExpertSelect(expert.id)}
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-accent to-highlight text-white px-4 py-2 rounded-lg font-medium hover:from-accent-dark hover:to-highlight-dark transition-all duration-300"
               >
                 View Profile
               </button>
