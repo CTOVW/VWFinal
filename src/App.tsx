@@ -443,7 +443,7 @@ You can review and modify these suggestions as needed. Would you like me to help
   // Render onboarding flow
   if (isOnboarding) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="min-h-screen bg-primary">
         <OnboardingFlow
           isAICompanionOpen={isAICompanionOpen}
           aiCompanionWidth={aiCompanionWidth}
@@ -470,7 +470,7 @@ You can review and modify these suggestions as needed. Would you like me to help
   // Render main application
   if (isLoggedIn) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-primary">
         {/* Render different main content based on activeMainTab */}
         {activeMainTab === 'dashboard' && (
           <Dashboard 
@@ -631,18 +631,18 @@ You can review and modify these suggestions as needed. Would you like me to help
   // Render landing page
   return (
     <div 
-      className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col transition-all duration-300"
+      className="min-h-screen bg-primary flex flex-col transition-all duration-300"
       style={{ 
         marginRight: isAICompanionOpen ? `${aiCompanionWidth}px` : '0px' 
       }}
     >
       {/* Simple Landing Page Header */}
-      <nav className="fixed top-0 w-full bg-white/10 backdrop-blur-md border-b border-white/20 z-50">
+      <nav className="fixed top-0 w-full bg-secondary/90 backdrop-blur-md border-b border-accent/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center space-x-2">
-              <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-accent to-highlight p-2 rounded-lg">
                 <Network className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Venture Weavers</span>
@@ -651,7 +651,7 @@ You can review and modify these suggestions as needed. Would you like me to help
             {/* Login Button */}
             <button 
               onClick={handleLogin}
-              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
+              className="bg-gradient-to-r from-accent to-highlight text-white px-6 py-2 rounded-lg font-semibold hover:from-accent-dark hover:to-highlight-dark transition-all duration-300"
             >
               Login
             </button>
@@ -665,7 +665,7 @@ You can review and modify these suggestions as needed. Would you like me to help
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               The Future of
-              <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"> Venture Trading</span>
+              <span className="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent"> Venture Trading</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed">
               AI-powered social trading platform connecting founders, investors, and mentors in the early-stage private capital market. 
@@ -674,7 +674,7 @@ You can review and modify these suggestions as needed. Would you like me to help
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button 
                 onClick={handleLogin}
-                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+                className="bg-gradient-to-r from-accent to-highlight text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-accent-dark hover:to-highlight-dark transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
               >
                 <span>Get Started</span>
                 <ArrowRight className="h-5 w-5" />
@@ -687,27 +687,27 @@ You can review and modify these suggestions as needed. Would you like me to help
 
           {/* Hero Visual */}
           <div className="mt-16 relative">
-            <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl p-8 backdrop-blur-sm border border-white/20">
+            <div className="bg-gradient-to-r from-accent/20 to-highlight/20 rounded-2xl p-8 backdrop-blur-sm border border-white/20">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="bg-purple-500/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-8 w-8 text-purple-300" />
+                  <div className="bg-accent/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">Social Trading</h3>
+                  <h3 className="text-white font-medium mb-2">Social Trading</h3>
                   <p className="text-white/70 text-sm">Connect with founders, investors, and mentors</p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-blue-500/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Brain className="h-8 w-8 text-blue-300" />
+                  <div className="bg-highlight/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Brain className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">AI-Powered</h3>
+                  <h3 className="text-white font-medium mb-2">AI-Powered</h3>
                   <p className="text-white/70 text-sm">Intelligent market insights and recommendations</p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-green-500/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-green-300" />
+                  <div className="bg-accent/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">Liquid Markets</h3>
+                  <h3 className="text-white font-medium mb-2">Liquid Markets</h3>
                   <p className="text-white/70 text-sm">Primary investments and secondary trading</p>
                 </div>
               </div>
@@ -717,12 +717,12 @@ You can review and modify these suggestions as needed. Would you like me to help
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Everything You Need to
-              <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"> Succeed</span>
+              <span className="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent"> Succeed</span>
             </h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Our comprehensive platform provides all the tools and intelligence needed for successful venture trading
@@ -731,49 +731,49 @@ You can review and modify these suggestions as needed. Would you like me to help
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Feature Cards */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="bg-blue-500/20 p-3 rounded-lg w-fit mb-4">
-                <MessageCircle className="h-6 w-6 text-blue-300" />
+            <div className="bg-primary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-primary-light transition-all duration-300">
+              <div className="bg-highlight/20 p-3 rounded-lg w-fit mb-4">
+                <MessageCircle className="h-6 w-6 text-highlight" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Social Experience</h3>
               <p className="text-white/70">Engage with communities, share insights, and build your reputation in the venture ecosystem.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="bg-purple-500/20 p-3 rounded-lg w-fit mb-4">
-                <BarChart3 className="h-6 w-6 text-purple-300" />
+            <div className="bg-primary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-primary-light transition-all duration-300">
+              <div className="bg-accent/20 p-3 rounded-lg w-fit mb-4">
+                <BarChart3 className="h-6 w-6 text-accent" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Equity Trading</h3>
               <p className="text-white/70">Access liquid markets for venture equity with advanced trading tools and real-time analytics.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="bg-green-500/20 p-3 rounded-lg w-fit mb-4">
-                <Target className="h-6 w-6 text-green-300" />
+            <div className="bg-primary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-primary-light transition-all duration-300">
+              <div className="bg-highlight/20 p-3 rounded-lg w-fit mb-4">
+                <Target className="h-6 w-6 text-highlight" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Expert Marketplace</h3>
               <p className="text-white/70">Connect with industry experts, book services, and attend workshops to accelerate your growth.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="bg-yellow-500/20 p-3 rounded-lg w-fit mb-4">
-                <Brain className="h-6 w-6 text-yellow-300" />
+            <div className="bg-primary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-primary-light transition-all duration-300">
+              <div className="bg-accent/20 p-3 rounded-lg w-fit mb-4">
+                <Brain className="h-6 w-6 text-accent" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Market Intelligence</h3>
               <p className="text-white/70">AI-powered insights and reports to make informed investment decisions.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="bg-red-500/20 p-3 rounded-lg w-fit mb-4">
-                <Shield className="h-6 w-6 text-red-300" />
+            <div className="bg-primary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-primary-light transition-all duration-300">
+              <div className="bg-highlight/20 p-3 rounded-lg w-fit mb-4">
+                <Shield className="h-6 w-6 text-highlight" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Portfolio Management</h3>
               <p className="text-white/70">Comprehensive tools to track, analyze, and optimize your investment portfolio.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="bg-indigo-500/20 p-3 rounded-lg w-fit mb-4">
-                <Lightbulb className="h-6 w-6 text-indigo-300" />
+            <div className="bg-primary backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:bg-primary-light transition-all duration-300">
+              <div className="bg-accent/20 p-3 rounded-lg w-fit mb-4">
+                <Lightbulb className="h-6 w-6 text-accent" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Venture Building</h3>
               <p className="text-white/70">End-to-end support for founders to build, validate, and scale their ventures.</p>
@@ -783,13 +783,13 @@ You can review and modify these suggestions as needed. Would you like me to help
       </section>
 
       {/* Platform Benefits */}
-      <section id="platform" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="platform" className="py-20 px-4 sm:px-6 lg:px-8 bg-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                 Built for the
-                <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"> Modern Investor</span>
+                <span className="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent"> Modern Investor</span>
               </h2>
               <p className="text-xl text-white/80 mb-8">
                 Our platform combines cutting-edge AI technology with deep market expertise to create the ultimate venture trading experience.
@@ -797,21 +797,21 @@ You can review and modify these suggestions as needed. Would you like me to help
               
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-green-400 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-highlight mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold">Real-time Market Data</h4>
                     <p className="text-white/70">Access live market intelligence and trading opportunities</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-green-400 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-highlight mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold">AI-Powered Insights</h4>
                     <p className="text-white/70">Get personalized recommendations based on your investment thesis</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-green-400 mt-1 flex-shrink-0" />
+                  <CheckCircle className="h-6 w-6 text-highlight mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-white font-semibold">Secure & Compliant</h4>
                     <p className="text-white/70">Bank-grade security with full regulatory compliance</p>
@@ -821,7 +821,7 @@ You can review and modify these suggestions as needed. Would you like me to help
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl p-8 backdrop-blur-sm border border-white/20">
+              <div className="bg-gradient-to-br from-accent/20 to-highlight/20 rounded-2xl p-8 backdrop-blur-sm border border-white/20">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
                     <div className="text-white font-semibold">12</div>
@@ -843,19 +843,19 @@ You can review and modify these suggestions as needed. Would you like me to help
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl p-12 backdrop-blur-sm border border-white/20">
+          <div className="bg-gradient-to-r from-accent/20 to-highlight/20 rounded-2xl p-12 backdrop-blur-sm border border-white/20">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Ready to Transform Your
-              <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"> Investment Journey?</span>
+              <span className="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent"> Investment Journey?</span>
             </h2>
             <p className="text-xl text-white/80 mb-8">
               Join thousands of founders, investors, and mentors who are already building the future of venture capital.
             </p>
             <button 
               onClick={handleLogin}
-              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 mx-auto"
+              className="bg-gradient-to-r from-accent to-highlight text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-accent-dark hover:to-highlight-dark transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 mx-auto"
             >
               <span>Start Your Journey</span>
               <ArrowRight className="h-6 w-6" />
@@ -865,12 +865,12 @@ You can review and modify these suggestions as needed. Would you like me to help
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/20">
+      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-accent/20 bg-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg">
+                <div className="bg-gradient-to-r from-accent to-highlight p-2 rounded-lg">
                   <Network className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-xl font-bold text-white">Venture Weavers</span>
@@ -883,32 +883,32 @@ You can review and modify these suggestions as needed. Would you like me to help
             <div>
               <h4 className="text-white font-semibold mb-4">Platform</h4>
               <ul className="space-y-2 text-white/70">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">API</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-white/70">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-highlight transition-colors">Blog</a></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="border-t border-accent/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/70 text-sm">
               © 2025 Venture Weavers. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-white/70 hover:text-white transition-colors text-sm">Privacy Policy</a>
-              <a href="#" className="text-white/70 hover:text-white transition-colors text-sm">Terms of Service</a>
-              <a href="#" className="text-white/70 hover:text-white transition-colors text-sm">Cookie Policy</a>
+              <a href="#" className="text-white/70 hover:text-highlight transition-colors text-sm">Privacy Policy</a>
+              <a href="#" className="text-white/70 hover:text-highlight transition-colors text-sm">Terms of Service</a>
+              <a href="#" className="text-white/70 hover:text-highlight transition-colors text-sm">Cookie Policy</a>
             </div>
           </div>
         </div>

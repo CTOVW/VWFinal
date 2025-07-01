@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Users, 
   Calendar, 
@@ -24,18 +24,7 @@ import {
 
 interface GlobalNavigationProps {
   activeMainTab: string;
-  setActiveMainTab: (
-    tab:
-      | 'dashboard'
-      | 'social-experience'
-      | 'network'
-      | 'messaging'
-      | 'equity-trading'
-      | 'expert-marketplace'
-      | 'intelligence'
-      | 'my-ventures'
-      | 'profile'
-  ) => void;
+  setActiveMainTab: (tab: 'dashboard' | 'social-experience' | 'network' | 'messaging' | 'equity-trading' | 'expert-marketplace' | 'intelligence' | 'my-ventures' | 'my-services') => void;
   setInitialTradingTab?: (tab: string | null) => void;
 }
 
@@ -81,13 +70,13 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 border-b border-white/20 z-50">
+    <nav className="fixed top-0 w-full bg-primary border-b border-accent/20 z-50">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-4" style={{ width: '120px' }}>
             <div className="flex items-center space-x-2">
-              <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-accent to-highlight p-2 rounded-lg">
                 <Network className="h-6 w-6 text-white" />
               </div>
               <span className="text-lg font-bold text-white hidden lg:block">VW</span>
@@ -101,7 +90,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
               <input
                 type="text"
                 placeholder="Search VW"
-                className="w-full bg-white/10 border border-white/20 rounded-lg pl-10 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full bg-secondary border border-accent/20 rounded-lg pl-10 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-transparent"
               />
             </div>
           </div>
@@ -111,7 +100,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
             <button 
               onClick={() => setActiveMainTab('equity-trading')}
               className={`text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg ${
-                activeMainTab === 'equity-trading' ? 'bg-white/10 text-white' : ''
+                activeMainTab === 'equity-trading' ? 'bg-secondary text-white' : ''
               }`}
             >
               Equity Trading
@@ -120,7 +109,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
             <button 
               onClick={() => setActiveMainTab('social-experience')}
               className={`text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg ${
-                activeMainTab === 'social-experience' ? 'bg-white/10 text-white' : ''
+                activeMainTab === 'social-experience' ? 'bg-secondary text-white' : ''
               }`}
             >
               Social Network
@@ -129,7 +118,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
             <button 
               onClick={() => setActiveMainTab('expert-marketplace')}
               className={`text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg ${
-                activeMainTab === 'expert-marketplace' ? 'bg-white/10 text-white' : ''
+                activeMainTab === 'expert-marketplace' ? 'bg-secondary text-white' : ''
               }`}
             >
               Expert Marketplace
@@ -138,7 +127,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
             <button 
               onClick={() => setActiveMainTab('intelligence')}
               className={`text-white/80 hover:text-white transition-colors px-3 py-2 rounded-lg ${
-                activeMainTab === 'intelligence' ? 'bg-white/10 text-white' : ''
+                activeMainTab === 'intelligence' ? 'bg-secondary text-white' : ''
               }`}
             >
               Intelligence
@@ -156,9 +145,9 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 }`}
               >
                 <Users className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full h-2 w-2"></span>
+                <span className="absolute -top-1 -right-1 bg-highlight text-white text-xs rounded-full h-2 w-2"></span>
               </button>
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-primary-dark text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                 My Network
               </div>
             </div>
@@ -170,25 +159,25 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 className="relative text-white/80 hover:text-white transition-colors p-2"
               >
                 <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                <span className="absolute -top-1 -right-1 bg-highlight text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
               </button>
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-primary-dark text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                 Notifications
               </div>
 
               {/* Notifications dropdown */}
               {showNotifications && (
-                <div className="absolute right-0 mt-2 w-72 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-lg shadow-lg z-50">
+                <div className="absolute right-0 mt-2 w-72 bg-primary rounded-lg shadow-lg z-50">
                   <div className="py-2">
-                    <div className="px-4 py-2 text-white/80 hover:bg-white/10 transition-colors">
-                      <p className="text-sm">New connection request from <span className="text-purple-300">Ahmed Ali</span></p>
+                    <div className="px-4 py-2 text-white/80 hover:bg-secondary transition-colors">
+                      <p className="text-sm">New connection request from <span className="text-highlight">Ahmed Ali</span></p>
                       <p className="text-xs text-white/50">2 mins ago</p>
                     </div>
-                    <div className="px-4 py-2 text-white/80 hover:bg-white/10 transition-colors">
-                      <p className="text-sm">Deal <span className="text-purple-300">PayMENA Series A</span> closes in 7 days</p>
+                    <div className="px-4 py-2 text-white/80 hover:bg-secondary transition-colors">
+                      <p className="text-sm">Deal <span className="text-highlight">PayMENA Series A</span> closes in 7 days</p>
                       <p className="text-xs text-white/50">1 hr ago</p>
                     </div>
-                    <div className="px-4 py-2 text-white/80 hover:bg-white/10 transition-colors">
+                    <div className="px-4 py-2 text-white/80 hover:bg-secondary transition-colors">
                       <p className="text-sm">You have 3 unread messages</p>
                       <p className="text-xs text-white/50">Yesterday</p>
                     </div>
@@ -206,9 +195,9 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 }`}
               >
                 <MessageCircle className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
               </button>
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-primary-dark text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                 Messaging
               </div>
             </div>
@@ -219,7 +208,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 onClick={toggleProfileDropdown}
                 className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
               >
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-accent to-highlight rounded-full flex items-center justify-center">
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <span className="hidden lg:block">John Doe</span>
@@ -228,42 +217,42 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
 
               {/* Profile Dropdown Menu */}
               {isProfileDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-56 bg-primary rounded-lg shadow-lg">
                   <div className="py-2">
                     <button
                       onClick={handleProfileClick}
-                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors w-full text-left"
+                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-secondary transition-colors w-full text-left"
                     >
                       <Eye className="h-4 w-4" />
                       <span>View/Edit Profile</span>
                     </button>
                     <button 
                       onClick={handleMyVenturesClick}
-                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors w-full text-left"
+                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-secondary transition-colors w-full text-left"
                     >
                       <Building2 className="h-4 w-4" />
                       <span>My Ventures</span>
                     </button>
                     <button 
                       onClick={handleMyInvestmentsClick}
-                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors w-full text-left"
+                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-secondary transition-colors w-full text-left"
                     >
                       <PieChart className="h-4 w-4" />
                       <span>My Investments</span>
                     </button>
                     <button 
                       onClick={handleMyServicesClick}
-                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors w-full text-left"
+                      className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-secondary transition-colors w-full text-left"
                     >
                       <Briefcase className="h-4 w-4" />
                       <span>My Services</span>
                     </button>
-                    <div className="border-t border-white/20 my-2"></div>
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <div className="border-t border-accent/20 my-2"></div>
+                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-secondary transition-colors">
                       <Settings className="h-4 w-4" />
                       <span>Account Settings</span>
                     </a>
-                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+                    <a href="#" className="flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-secondary transition-colors">
                       <Lock className="h-4 w-4" />
                       <span>Privacy Controls</span>
                     </a>
@@ -283,7 +272,7 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 border-t border-white/20">
+          <div className="md:hidden bg-primary border-t border-accent/20">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <div className="flex items-center space-x-2 px-3 py-2 text-white/80">
                 <Search className="h-4 w-4" />
@@ -316,18 +305,6 @@ function GlobalNavigation({ activeMainTab, setActiveMainTab, setInitialTradingTa
                 className="block w-full text-left px-3 py-2 text-white/80 hover:text-white"
               >
                 Intelligence
-              </button>
-              <button 
-                onClick={() => setActiveMainTab('my-ventures')}
-                className="block w-full text-left px-3 py-2 text-white/80 hover:text-white"
-              >
-                My Ventures
-              </button>
-              <button 
-                onClick={() => setActiveMainTab('my-services')}
-                className="block w-full text-left px-3 py-2 text-white/80 hover:text-white"
-              >
-                My Services
               </button>
             </div>
           </div>

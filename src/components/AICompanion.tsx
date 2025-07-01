@@ -87,7 +87,7 @@ function AICompanion({
       <div className="fixed bottom-6 right-6 z-50">
         <button 
           onClick={onToggle}
-          className="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-4 rounded-full shadow-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-110"
+          className="bg-gradient-to-r from-accent to-highlight text-white p-4 rounded-full shadow-lg hover:from-accent-dark hover:to-highlight-dark transition-all duration-300 transform hover:scale-110"
         >
           <Brain className="h-6 w-6" />
         </button>
@@ -97,14 +97,14 @@ function AICompanion({
 
   return (
     <div 
-      className="fixed right-0 top-16 h-[calc(100vh-4rem)] bg-white/10 backdrop-blur-md border-l border-white/20 flex flex-col z-40"
+      className="fixed right-0 top-16 h-[calc(100vh-4rem)] bg-primary border-l border-accent/20 flex flex-col z-40"
       style={{ width: `${width}px` }}
     >
       {/* Resize Handle */}
       <div
         ref={resizeRef}
         onMouseDown={handleResizeStart}
-        className="absolute left-0 top-0 w-1 h-full cursor-col-resize hover:bg-purple-500/50 transition-colors"
+        className="absolute left-0 top-0 w-1 h-full cursor-col-resize hover:bg-highlight/50 transition-colors"
       >
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <GripVertical className="h-4 w-4 text-white/30" />
@@ -112,14 +112,14 @@ function AICompanion({
       </div>
 
       {/* AI Companion Selection (5%) */}
-      <div className="p-4 border-b border-white/20" style={{ height: '5%' }}>
+      <div className="p-4 border-b border-accent/20" style={{ height: '5%' }}>
         <select 
           value={selectedAgent}
           onChange={(e) => onAgentChange(e.target.value)}
-          className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="w-full bg-secondary border border-accent/20 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-highlight"
         >
           {agentOptions.map((option) => (
-            <option key={option.value} value={option.value} className="bg-slate-800">
+            <option key={option.value} value={option.value} className="bg-secondary">
               {option.label}
             </option>
           ))}
@@ -127,13 +127,13 @@ function AICompanion({
       </div>
 
       {/* Chat History Area (80%) */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ height: '80%' }}>
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-primary-dark" style={{ height: '80%' }}>
         {chatHistory.map((message, index) => (
           <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[80%] p-3 rounded-lg ${
               message.type === 'user' 
-                ? 'bg-purple-500 text-white' 
-                : 'bg-white/10 text-white border border-white/20'
+                ? 'bg-accent text-white' 
+                : 'bg-secondary text-white border border-accent/20'
             }`}>
               <p className="text-sm">{message.message}</p>
               <p className="text-xs opacity-70 mt-1">
@@ -145,7 +145,7 @@ function AICompanion({
       </div>
 
       {/* Chat Input Area (15%) */}
-      <div className="p-4 border-t border-white/20" style={{ height: '15%' }}>
+      <div className="p-4 border-t border-accent/20 bg-secondary" style={{ height: '15%' }}>
         <div className="flex items-center space-x-2">
           <button className="text-white/60 hover:text-white transition-colors">
             <Paperclip className="h-5 w-5" />
@@ -156,11 +156,11 @@ function AICompanion({
             onChange={(e) => onMessageChange(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask me anything about the venture ecosystem..."
-            className="flex-1 bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="flex-1 bg-primary border border-accent/20 rounded-lg px-3 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-highlight"
           />
           <button 
             onClick={onSendMessage}
-            className="bg-purple-500 hover:bg-purple-600 text-white p-2 rounded-lg transition-colors"
+            className="bg-highlight hover:bg-highlight-dark text-white p-2 rounded-lg transition-colors"
           >
             <Send className="h-4 w-4" />
           </button>
