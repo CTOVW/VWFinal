@@ -27,6 +27,7 @@ import MyVenturesPage from './ventures/MyVenturesPage';
 import MyServicesPage from './my-services/MyServicesPage';
 import ProfilePage from './profile/ProfilePage';
 import GlobalNavigation from './components/GlobalNavigation';
+import AdminPanelPage from './admin/AdminPanelPage';
 
 interface Message {
   type: 'user' | 'ai';
@@ -79,6 +80,7 @@ interface PreferencesData {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOnboarding, setIsOnboarding] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [selectedRole, setSelectedRole] = useState<'founder' | 'investor' | 'expert' | null>(null);
   const [activeMainTab, setActiveMainTab] = useState<
     | 'dashboard'
@@ -91,9 +93,10 @@ function App() {
     | 'my-ventures'
     | 'my-services'
     | 'profile'
+    | 'admin'
   >('equity-trading');
 
-  // state based flag so “My Investments” navigation triggers re-render in TradingPage
+  // state based flag so "My Investments" navigation triggers re-render in TradingPage
   const [initialTradingTab, setInitialTradingTab] = useState<string | null>(null);
   
   // Profile Data State (centralized)
@@ -156,6 +159,12 @@ function App() {
   const handleLogin = () => {
     setIsOnboarding(true);
     // Removed: setIsAICompanionOpen(true); - AI companion will not open by default
+  };
+
+  const handleAdminLogin = () => {
+    setIsAdmin(true);
+    setIsLoggedIn(true);
+    setActiveMainTab('admin');
   };
 
   const handleOnboardingComplete = () => {
@@ -433,6 +442,10 @@ You can review and modify these suggestions as needed. Would you like me to help
           { value: 'session-intelligence', label: 'Session Intelligence Agent' },
           { value: 'client-relationship', label: 'Client Relationship Agent' }
         ];
+      case 'admin':
+        return [
+          { value: 'platform-guide', label: 'Admin Guide Agent' }
+        ];
       default:
         return [
           { value: 'platform-guide', label: 'Platform Guide Agent' }
@@ -464,6 +477,24 @@ You can review and modify these suggestions as needed. Would you like me to help
           onPreferencesChange={setPreferences} // Pass setter for preferences
         />
       </div>
+    );
+  }
+
+  // Render admin panel
+  if (isAdmin && isLoggedIn && activeMainTab === 'admin') {
+    return (
+      <AdminPanelPage 
+        isAICompanionOpen={isAICompanionOpen}
+        aiCompanionWidth={aiCompanionWidth}
+        toggleAICompanion={toggleAICompanion}
+        selectedAICompanion={selectedAICompanion}
+        onAgentChange={handleAgentChange}
+        chatMessage={chatMessage}
+        chatHistory={chatHistory}
+        onMessageChange={setChatMessage}
+        onSendMessage={handleSendMessage}
+        onWidthChange={setAiCompanionWidth}
+      />
     );
   }
 
@@ -648,13 +679,21 @@ You can review and modify these suggestions as needed. Would you like me to help
               <span className="text-xl font-bold text-white">Venture Weavers</span>
             </div>
 
-            {/* Login Button */}
-            <button 
-              onClick={handleLogin}
-              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
-            >
-              Login
-            </button>
+            {/* Login Buttons */}
+            <div className="flex space-x-4">
+              <button 
+                onClick={handleLogin}
+                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
+              >
+                Login
+              </button>
+              <button 
+                onClick={handleAdminLogin}
+                className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-red-600 hover:to-orange-600 transition-all duration-300"
+              >
+                Admin
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -729,9 +768,9 @@ You can review and modify these suggestions as needed. Would you like me to help
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Feature Cards */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 cursor-pointer">
               <div className="bg-blue-500/20 p-3 rounded-lg w-fit mb-4">
                 <MessageCircle className="h-6 w-6 text-blue-300" />
               </div>
@@ -739,7 +778,7 @@ You can review and modify these suggestions as needed. Would you like me to help
               <p className="text-white/70">Engage with communities, share insights, and build your reputation in the venture ecosystem.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 cursor-pointer">
               <div className="bg-purple-500/20 p-3 rounded-lg w-fit mb-4">
                 <BarChart3 className="h-6 w-6 text-purple-300" />
               </div>
@@ -747,7 +786,7 @@ You can review and modify these suggestions as needed. Would you like me to help
               <p className="text-white/70">Access liquid markets for venture equity with advanced trading tools and real-time analytics.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 cursor-pointer">
               <div className="bg-green-500/20 p-3 rounded-lg w-fit mb-4">
                 <Target className="h-6 w-6 text-green-300" />
               </div>
@@ -755,7 +794,7 @@ You can review and modify these suggestions as needed. Would you like me to help
               <p className="text-white/70">Connect with industry experts, book services, and attend workshops to accelerate your growth.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 cursor-pointer">
               <div className="bg-yellow-500/20 p-3 rounded-lg w-fit mb-4">
                 <Brain className="h-6 w-6 text-yellow-300" />
               </div>
@@ -763,7 +802,7 @@ You can review and modify these suggestions as needed. Would you like me to help
               <p className="text-white/70">AI-powered insights and reports to make informed investment decisions.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 cursor-pointer">
               <div className="bg-red-500/20 p-3 rounded-lg w-fit mb-4">
                 <Shield className="h-6 w-6 text-red-300" />
               </div>
@@ -771,7 +810,7 @@ You can review and modify these suggestions as needed. Would you like me to help
               <p className="text-white/70">Comprehensive tools to track, analyze, and optimize your investment portfolio.</p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 cursor-pointer">
               <div className="bg-indigo-500/20 p-3 rounded-lg w-fit mb-4">
                 <Lightbulb className="h-6 w-6 text-indigo-300" />
               </div>
